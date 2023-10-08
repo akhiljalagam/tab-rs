@@ -107,6 +107,36 @@ You can also put the current tab before the directory in `~/.config/starship.tom
 format = "${custom.tab}$all"
 ```
 
+
+**(Powerlevel10k)**
+
+Include the following prompt element in your powerlevel10k configuration file ~/.p10k.zsh, above the line that mentions POWERLEVEL9K_LEFT_PROMPT_ELEMENTS.
+
+```
+function prompt_tab() {
+		if (($+TAB)); then
+		  p10k segment -i '󰓩' -f blue -t ${TAB}
+		fi
+  }
+```
+
+By placing `tab` into the POWERLEVEL9K_LEFT_PROMPT_ELEMENTS, you can now show the tab status.
+
+Example
+```
+  typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+    # =========================[ Line #1 ]=========================
+    os_icon                 # os identifier
+    dir                     # current directory
+    vcs                     # git status
+    # =========================[ Line #2 ]=========================
+    newline                 # \n
+		tab											# show tab status          <---------------------------------
+		prompt_char             # prompt symbol
+  )
+```
+
+
 **(Other)**
 
 You can configure any other statusline tool that supports environment variables.  The current tab name is available in the `$TAB` environment var.
